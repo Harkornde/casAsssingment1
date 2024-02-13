@@ -6,13 +6,18 @@ struct WhatToDO{
     string title;
     string Description;
     bool isTrue;
-    uint256 id;
 }
 
 WhatToDO[] public toDos;
 
-function passInToDO(string memory _title, string memory _description, bool _isTrue, uint256 _id) external{
- toDos.push(WhatToDO(_title,_description, _isTrue, _id));
+function passInToDO(string memory _title, string memory _description, bool _isTrue) external{
+ toDos.push(WhatToDO(_title,_description, _isTrue));
 }
+
+function deleteToDo(uint256 clickIndex) public {
+        require(clickIndex < toDos.length, "Index out of bounds");
+        toDos[clickIndex] = toDos[toDos.length - 1];
+        toDos.pop();
+    }
 
 }
